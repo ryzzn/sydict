@@ -1,56 +1,56 @@
 ;;
 ;; filename: sydict.el
-;; Description: 
+;; Description:
 ;; Author: sylvester
 ;; Maintainer: sylvester (Shi Yudi)
 ;; Created: Thu Jan 27 13:30:12 2011 (+0800)
 ;; Version: 0.3
-;; Last-Updated: 一  5月  2 10:34:06 2011 (+0800)
-;;           By: Sylvester Y. Shi
-;;     Update #: 64
+;; Last-Updated: Tue Feb  1 00:48:52 2011 (+0800)
+;;           By: sylvester
+;;     Update #: 62
 ;; URL: http://blog.meecoder.com/
 ;; Keywords: sydict dictionary emacs stardict
 ;; Compatibility: emacs & linux
-;; 
+;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; 
-;;; Commentary: 
+;;
+;;; Commentary:
 ;; This script is aim to make a simple interface to look up a word.
 ;; It's now based on oald dictionary, and is a brief impelement.
-;; 
+;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; 
+;;
 ;;; Change Log:
 ;; 0.1 run a shell to look up a word by provided function
 ;;        "sydict-look-up-word".
-;; 
+;;
 ;; 0.2 write the word into result buffer.
-;; 
+;;
 ;; 0.3 Mon Jan 31 2010
 ;;     1. write result into a partical buffer, defalut "*sydict*"
 ;;     2. using help mode to view result.
-;;     3. using `with-help-window' for displaying result that 
+;;     3. using `with-help-window' for displaying result that
 ;;        help shrinking length of function of  `sydict-look-up-word'.
 ;;     4. setting a new function `sydict-buffer'.
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; 
+;;
 ;; This program is free software; you can redistribute it and/or
 ;; modify it under the terms of the GNU General Public License as
 ;; published by the Free Software Foundation; either version 3, or
 ;; (at your option) any later version.
-;; 
+;;
 ;; This program is distributed in the hope that it will be useful,
 ;; but WITHOUT ANY WARRANTY; without even the implied warranty of
 ;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
 ;; General Public License for more details.
-;; 
+;;
 ;; You should have received a copy of the GNU General Public License
 ;; along with this program; see the file COPYING.  If not, write to
 ;; the Free Software Foundation, Inc., 51 Franklin Street, Fifth
 ;; Floor, Boston, MA 02110-1301, USA.
-;; 
+;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; 
+;;
 ;;; Code:
 
 (load "sydict-index")
@@ -58,7 +58,7 @@
 ;; some options to customize sydict
 (defvar sydict-prog-name "sydict"
   "Program name of which to look for explain of a word.")
- 
+
 (defvar sydict-dict-path "/etc/sydict/oald.dict"
   "Indicator of which explain's database to use.")
 
@@ -87,9 +87,9 @@ into file `sydict-history-file-name'")
   (setq sydict-save-history (not sydict-save-history)))
 
 (defun sydict-buffer ()
-  "Return buffer name of sydict set in `sydict-buffer-name'. 
+  "Return buffer name of sydict set in `sydict-buffer-name'.
 Create it if not exist yet."
-  (buffer-name 
+  (buffer-name
    (get-buffer-create sydict-buffer-name)))
 
 ;; interface to use to look up a word
@@ -101,22 +101,23 @@ Create it if not exist yet."
 	  (predict-word (sydict-word-at-point))
 	  val)
      ;; read word from mini buffer
-     (setq val (completing-read 
-		(if predict-word 
+     (setq val (completing-read
+		(if predict-word
 		    (format "Word (default %s): " predict-word)
 		  "Word: ")
-		word-list nil t nil nil 
-		(and predict-word 
+		word-list nil t nil nil
+		(and predict-word
 		     (symbol-name predict-word))))
      ;; return the word index if you write a word or
      ;; have default word, nil otherwise.
      (list (if (equal val "")
 	       nil
-	     (assoc val sydict-alist))))) ;end of interactive
+	     ;; 单词匹配时忽略大小写
+	     (assoc-ignore-case val sydict-alist))))) ;end of interactive
   ;; show explain of word
   (if (null index)
       (message "You didn't specify a function")
-    (save-excursion 
+    (save-excursion
 	(with-help-window (sydict-buffer)
 	  (let ((aword (car index))
 		(start (int-to-string (nth 1 index)))
@@ -126,18 +127,18 @@ Create it if not exist yet."
 			  (expand-file-name sydict-dict-path) start length)
 	    (with-current-buffer (sydict-buffer)
 	      (goto-char (point-min))
-	      (insert (format "<* %s *> " aword))
+	      (insert (format "<* %s *> \n" aword))
 	      (if sydict-save-history
-		  (append-to-file 
+		  (append-to-file
 		   (concat aword "\n") nil
 		   (concat "~/" sydict-history-file-name)))))))))
 
-
 (defun sydict-word-at-point ()
   (save-excursion
-    (backward-word)
+    ;; 删除(backward-word)，修正光标在单词第一个字母取词时取到前一个单词的Bug.
     (let ((word (word-at-point)))
-      (if (assoc word sydict-alist)
+      ;; 单词匹配忽略大小写
+      (if (assoc-ignore-case word sydict-alist)
 	  (intern word)
 	nil))))
 
