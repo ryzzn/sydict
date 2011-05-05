@@ -1,0 +1,42 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; 
+;; *This program is free software; you can redistribute it and/or
+;; modify it under the terms of the GNU General Public License as
+;; published by the Free Software Foundation; either version 3, or
+;; (at your option) any later version.
+;; 
+;; This program is distributed in the hope that it will be useful,
+;; but WITHOUT ANY WARRANTY; without even the implied warranty of
+;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+;; General Public License for more details.
+;; 
+;; You should have received a copy of the GNU General Public License
+;; along with this program; see the file COPYING.  If not, write to
+;; the Free Software Foundation, Inc., 51 Franklin Street, Fifth
+;; Floor, Boston, MA 02110-1301, USA.
+;; 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+Usage:
+1.Copy file named 'sydict' to a dictionary that your PATH can reach.
+2.Set varible 'sydict-dict-path' as position of 'oald.dict' like this:
+       (setq sydict-dict-path path-of-oald-dict)
+3.Copy 'sydict.el' and 'sydict-index.el' to your emacs plugin directory,
+  than add this in your .emacs file:
+       (add-to-list 'load-path directory-of-this-two-files)
+4.Add this command in your .emacs file as follows:
+       (load "sydict")
+5.Restart your emacs, and now you can run command *sydict-look-up-work* 
+  to look up a word.
+
+使用步骤：
+1.把sydict可执行文件放到PATH中存在的文件夹中。
+2.把oald.dict的位置赋值给sydict-dict-path变量。
+3.将sydict-index.el和sydict.el文件放到你的load-path中的某个文件夹中。
+4.在你的.emacs文件夹中加入这句：
+(load “sydict”)
+5.你可以使用C-xC-e执行上面那句话，也可以重启Emacs来载入sydict。
+这样，你就可以使用sydict-look-up-word命令来查询单词了。
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
