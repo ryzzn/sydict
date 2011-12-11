@@ -4,10 +4,10 @@
 ;; Author: sylvester
 ;; Maintainer: sylvester (Shi Yudi)
 ;; Created: Thu Jan 27 13:30:12 2011 (+0800)
-;; Version: 0.3
-;; Last-Updated: Tue Feb  1 00:48:52 2011 (+0800)
-;;           By: sylvester
-;;     Update #: 62
+;; Version: 0.3.1
+;; Last-Updated: 日 12月 11 13:54:14 2011 (+0800)
+;;           By: Sylvester Y. Shi
+;;     Update #: 71
 ;; URL: http://blog.meecoder.com/
 ;; Keywords: sydict dictionary emacs stardict
 ;; Compatibility: emacs & linux
@@ -21,17 +21,18 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;;; Change Log:
-;; 0.1 run a shell to look up a word by provided function
-;;        "sydict-look-up-word".
-;;
-;; 0.2 write the word into result buffer.
-;;
-;; 0.3 Mon Jan 31 2010
+;; 11-Dec-2011    Sylvester Y. Shi  
+;;    Last-Updated: 日 12月 11 13:50:36 2011 (+0800) #64 (Sylvester Y. Shi)
+;;    require 'thingatpt recommended by jinn8522.
+;; Mon Jan 31 2010 Sylvester Y. Shi
 ;;     1. write result into a partical buffer, defalut "*sydict*"
 ;;     2. using help mode to view result.
 ;;     3. using `with-help-window' for displaying result that
 ;;        help shrinking length of function of  `sydict-look-up-word'.
 ;;     4. setting a new function `sydict-buffer'.
+;; 0.2 write the word into result buffer.
+;; 0.1 run a shell to look up a word by provided function
+;;        "sydict-look-up-word".
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;; This program is free software; you can redistribute it and/or
@@ -54,6 +55,7 @@
 ;;; Code:
 
 (load "sydict-index")
+(require 'thingatpt)
 
 ;; some options to customize sydict
 (defvar sydict-prog-name "sydict"
