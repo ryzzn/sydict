@@ -5,9 +5,9 @@
 ;; Maintainer: sylvester (Shi Yudi)
 ;; Created: Thu Jan 27 13:30:12 2011 (+0800)
 ;; Version: 0.3.1
-;; Last-Updated: Sun Dec 11 14:23:58 2011 (+0800)
+;; Last-Updated: Sun Dec 11 14:35:10 2011 (+0800)
 ;;           By: Sylvester Y. Shi
-;;     Update #: 82
+;;     Update #: 83
 ;; URL: http://blog.sydi.org/
 ;; Keywords: sydict dictionary emacs stardict
 ;; Compatibility: emacs & linux
@@ -22,8 +22,8 @@
 ;;
 ;;; TODO:
 ;; 1. make a universal tool for making dictionary data file from stardict.
-;; 2. support other dictionary file type.
-;; 3. more friendly for presentation for word detail.
+;; 2. more friendly for presentation for word detail.
+;; 3. support other dictionary file type.
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
