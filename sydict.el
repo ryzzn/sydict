@@ -5,24 +5,31 @@
 ;; Maintainer: sylvester (Shi Yudi)
 ;; Created: Thu Jan 27 13:30:12 2011 (+0800)
 ;; Version: 0.3.1
-;; Last-Updated: 日 12月 11 13:54:14 2011 (+0800)
+;; Last-Updated: Sun Dec 11 14:23:58 2011 (+0800)
 ;;           By: Sylvester Y. Shi
-;;     Update #: 71
-;; URL: http://blog.meecoder.com/
+;;     Update #: 82
+;; URL: http://blog.sydi.org/
 ;; Keywords: sydict dictionary emacs stardict
 ;; Compatibility: emacs & linux
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;;; Commentary:
-;; This script is aim to make a simple interface to look up a word.
-;; It's now based on oald dictionary, and is a brief impelement.
+;; This script is aimed to make a simple interface to look up a word.
+;; It's now based on oald dictionary, and is a brief impelementation.
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;;; TODO:
+;; 1. make a universal tool for making dictionary data file from stardict.
+;; 2. support other dictionary file type.
+;; 3. more friendly for presentation for word detail.
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;;; Change Log:
 ;; 11-Dec-2011    Sylvester Y. Shi  
-;;    Last-Updated: 日 12月 11 13:50:36 2011 (+0800) #64 (Sylvester Y. Shi)
+;;    Last-Updated: Sun Dec 11 13:50:36 2011 (+0800) #64 (Sylvester Y. Shi)
 ;;    require 'thingatpt recommended by jinn8522.
 ;; Mon Jan 31 2010 Sylvester Y. Shi
 ;;     1. write result into a partical buffer, defalut "*sydict*"
